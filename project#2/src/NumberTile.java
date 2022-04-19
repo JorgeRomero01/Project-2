@@ -11,7 +11,7 @@ public class NumberTile
     public NumberTile() 
     {
        // TO DO: Code the body of this method
-    	tile = new ArrayList();
+    	tile = new ArrayList<Integer>();
     	int topNum = gen.nextInt(9) + 1;
     	int bottomNum = gen.nextInt(9) + 1;
     	int rightNum = gen.nextInt(9) + 1;
@@ -27,6 +27,11 @@ public class NumberTile
     // Rotate this NumberTile 90 degrees
     public void rotate() 
     {
+    	int temp = tile.get(0);
+    	tile.set(0, tile.get(3));
+    	tile.set(3, tile.get(2));
+    	tile.set(2, tile.get(1));
+    	tile.set(1, tile.get(temp));	
     	
        // TO DO: Code the body of this method
     }
@@ -53,8 +58,11 @@ public class NumberTile
     public String toString() 
     {
        // TO DO: Code the body of this method
+       String output = " "	+	tile.get(0) +	"\n" + 
+    		   tile.get(0) + 		" "			+ tile.get(2) + "\n"+
+    		   " "		+			tile.get(3)		+ "\n";
        
        // temporary return statement so program skeleton will compile and run
-       return null ;
+       return output ;
     }    
 } // end of NumberTile class

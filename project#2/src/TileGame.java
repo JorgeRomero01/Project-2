@@ -12,13 +12,19 @@ public class TileGame
    // Creates a new TileGame with two initial hands and a board
    public TileGame(Hand firstHand, Hand secondHand)
    {
-      // TO DO: Code the body of this method
+	   board = new Board();
+	   hand1 = firstHand;	
+	   hand2 = secondHand;// TO DO: Code the body of this method
    }
    
    // Players take turn moving until one or both hand are empty
    public void play()
    {
-      // TO DO: Code the body of this method
+      while(hand1.getSize() > 0 && hand2.getSize() > 0) {
+    	  makeMove(hand1);
+    	  makeMove(hand2);
+      }
+	   // TO DO: Code the body of this method
    }
 
    // Utility method called by method makeMove.  Returns the index at which a
@@ -28,7 +34,24 @@ public class TileGame
    private int getIndexForFit(NumberTile tile)
    {
       // TO DO: Code the body of this method
+       int size_board = board.getSize();
+       for(int i = 0; i <size_board; i++) {
+    	   if(i == 0) {
+    		   if(tile.getRight() == board.getTile(0).getLeft()) {
+    			   return i;
+    		   }
+    	   }
+    	   if(i == size_board - 1) {
+    		   if(tile.getLeft() == board.getTile(size_board - 1).getRight()) {
+    			   return size_board;
+    		   }
+    	   }
+    	   else if(tile.getLeft() == board.getTile(i).getRight() && tile.getRight() == board.getTile(i + 1).getLeft()) {
+    		   return i;
+    	   }
+       }
        
+    		   
       // temporary return statement so program skeleton will compile and run
       return -1 ;
    }
